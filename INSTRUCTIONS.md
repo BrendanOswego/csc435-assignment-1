@@ -1,6 +1,5 @@
 
 <html>
-<title>CSC435: Homework 1</title>
 <body>
 <center>
 <h1>CSC435: Homework 1</h1>
