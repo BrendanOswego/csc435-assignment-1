@@ -1,0 +1,24 @@
+$color: red;
+nav.main-nav {
+  display: flex;
+  justify-content: center;
+  ul {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    list-style: none;
+    border-bottom: 1px solid #000000;
+    li {
+      a {
+        text-decoration: none;
+        &:hover {
+          font-weight: bold;
+        }
+      }
+      &+li {
+        margin-left: 20px;
+      }
+    }
+  }
+}
