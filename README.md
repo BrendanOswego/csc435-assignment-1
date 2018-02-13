@@ -1,5 +1,7 @@
 ## CSC435 Web Services Assignment 1
 
+Description of the project can be found in the `INSTRUCTIONS.md` file.
+
 # Install Tomcat
 * To run ths program Apache Tomcat must be installed
 * To install go to the [Apache Tomcat download page](https://tomcat.apache.org/download-80.cgi) under the latest version (currenty 8.5.27) and select the file type under "Core Distributions" based on your OS
