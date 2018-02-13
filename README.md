@@ -12,7 +12,7 @@
 * Extract the file
 
 # Maven commands, and stop/start Tomcat
-* Once Maven is installed and you can run the `mvn` command, run `mvn install -f pom.xml` from the root directory of this project
+* Once Maven is installed the commands in the `script` directory should work
 * To install the Maven dependencies and plugins run `./scripts/install.sh`
 * To clean the target folder run `./scripts/clean.sh`
 * To package the .war file run `./scripts/package.sh`
