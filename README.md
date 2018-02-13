@@ -6,7 +6,7 @@ Description of the project can be found in the `INSTRUCTIONS.md` file.
 * To run ths program Apache Tomcat must be installed
 * To install go to the [Apache Tomcat download page](https://tomcat.apache.org/download-80.cgi) under the latest version (currenty 8.5.27) and select the file type under "Core Distributions" based on your OS
 * Extract the file
-* Add a PATH variable named TOMCAT_HOME that points to where you installed Tomcats
+* Add a PATH variable named TOMCAT_HOME that points to where you installed Tomcat
 
 # Install Maven
 * Maven must also be installed for packaging the .war (Web Application Resource) file
