@@ -13,7 +13,9 @@
 
 # Maven commands, and stop/start Tomcat
 * Once Maven is installed and you can run the `mvn` command, run `mvn install -f pom.xml` from the root directory of this project
-* To package the .war file run the `mvn package -f pom.xml`
+* To install the Maven dependencies and plugins run `./scripts/install.sh`
+* To clean the target folder run `./scripts/clean.sh`
+* To package the .war file run `./scripts/package.sh`
 * To deploy the .war file to Tomcat run `./scripts/deploy.sh`
 * To start Tomcat run `./scripts/start.sh`
 * To stop Tomcat run `./scripts/stop.sh`

@@ -18,7 +18,9 @@ public class Home extends HttpServlet {
     PrintWriter out = res.getWriter();
     String cssPath = req.getContextPath() + "/css/styles.css";
     PrintHelper.instance().printTop(out, cssPath);
-    out.println("<center>Welcome to my Library Web Application!</center>");
+    out.println("<p>Welcome to my Library Web Application!</p>");
+    out.println(
+        "<p>Here is the <a href='https://github.com/BrendanOswego/csc435-assignment-1'>link to the github repo</a> this project is under, which includes documentation</p>");
     PrintHelper.instance().printBottom(out);
   }
 
