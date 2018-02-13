@@ -16,7 +16,10 @@ public class Home extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
     res.setContentType("text/html");
     PrintWriter out = res.getWriter();
-    PrintHelper.instance().printNavigation(out);
+    String cssPath = req.getContextPath() + "/css/styles.css";
+    PrintHelper.instance().printTop(out, cssPath);
+    out.println("<center>Welcome to my Library Web Application!</center>");
+    PrintHelper.instance().printBottom(out);
   }
 
 }

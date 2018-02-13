@@ -39,6 +39,36 @@
 					<outputPath>${basedir}/target/assignment-1/css/</outputPath>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/assignment-1/css/fonts/</outputDirectory>
+							<nonFilteredFileExtensions>
+								<nonFilteredFileExtension>eot</nonFilteredFileExtension>
+								<nonFilteredFileExtension>svg</nonFilteredFileExtension>
+								<nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+								<nonFilteredFileExtension>woff</nonFilteredFileExtension>
+								<nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+							</nonFilteredFileExtensions>
+							<resources>
+								<resource>
+									<directory>src/main/styles/fonts/</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>

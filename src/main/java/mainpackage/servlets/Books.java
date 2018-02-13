@@ -20,14 +20,16 @@ public class Books extends HttpServlet {
     res.setContentType("text/html");
     PrintWriter out = res.getWriter();
     HttpSession session = req.getSession();
-    PrintHelper.instance().printNavigation(out);
+    String cssPath = req.getContextPath() + "/css/styles.css";
+    PrintHelper.instance().printTop(out, cssPath);
+    out.println("<p>Add Books <a href='/assignment-1/books/add'>here</a>");
     if (session.getAttribute("booksList") != null) {
       BooksList booksList = (BooksList) session.getAttribute("booksList");
       for (Book b : booksList.getBooks()) {
         out.println("<p>" + b.getTitle() + ", " + b.getAuthor() + "</p>");
       }
     }
-    out.println("<p>Add Books <a href='/assignment-1/books/add'>here</a>");
+    PrintHelper.instance().printBottom(out);
     out.close();
   }
 

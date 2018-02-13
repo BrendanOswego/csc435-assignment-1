@@ -2,7 +2,7 @@ package mainpackage.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,28 +20,27 @@ public class AddBook extends HttpServlet {
     res.setContentType("text/html");
     PrintWriter out = res.getWriter();
     String cssPath = req.getContextPath() + "/css/styles.css";
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<meta charset='UTF-8'>");
-    out.println("<link rel='stylesheet' href='" + cssPath + "'>");
-    out.println("</head>");
-    out.println("<body>");
-    PrintHelper.instance().printNavigation(out);
+    PrintHelper.instance().printTop(out, cssPath);
     out.println("<form method='POST'>");
-    out.println("<label>Title:</label><input type='text' name='title'/>");
-    out.println("<label>Author:</label><input type='text' name='author'/>");
+    out.println("<input type='text' name='title' placeholder='Title'/>");
+    out.println("<input type='text' name='author' placeholder='Author'/>");
     out.println("<input type='submit' name='submit'/>");
     out.println("</form>");
-    out.println("</body>");
-    out.println("</html>");
+    PrintHelper.instance().printBottom(out);
     out.close();
   }
 
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
     res.setContentType("text/html");
     PrintWriter out = res.getWriter();
+    String cssPath = req.getContextPath() + "/css/styles.css";
+    PrintHelper.instance().printTop(out, cssPath);
     String title = req.getParameterValues("title")[0];
     String author = req.getParameterValues("author")[0];
+    if (title.trim().isEmpty() || author.trim().isEmpty()) {
+      out.println("<p>Title/Author cannot be empty</p>");
+      return;
+    }
     HttpSession session = req.getSession();
     BooksList booksList;
     if (session.getAttribute("booksList") == null) {
@@ -49,11 +48,17 @@ public class AddBook extends HttpServlet {
     } else {
       booksList = (BooksList) session.getAttribute("booksList");
     }
-    if (booksList.addBook(new Book(title, author))) {
+    if (!booksList.containsBook(title, author)) {
+      if (booksList.addBook(new Book(title, author))) {
+        out.println(
+            "<p>book added successfully to see all books please go to <a href='/assignment-1/books'>the book page</a></p>");
+        req.getSession().setAttribute("booksList", booksList);
+      }
+    } else {
       out.println(
-          "<p>book added successfully to see all books please go to <a href='/assignment-1/books'>the book page</a></p>");
+          "<p>Book is already added in the session try <a href='/assignment-1/books/add'>adding a new book</a></p>");
     }
-    req.getSession().setAttribute("booksList", booksList);
+    PrintHelper.instance().printBottom(out);
     out.close();
   }
 }
