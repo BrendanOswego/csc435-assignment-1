@@ -2,11 +2,7 @@ package mainpackage.data;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class API {
   private static API instance = null;
