@@ -7,11 +7,15 @@
   </servlet>
   <servlet>
     <servlet-name>books</servlet-name>
-    <servlet-class>mainpackage.servlets.Books</servlet-class>
+    <servlet-class>mainpackage.servlets.BooksServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>addbook</servlet-name>
-    <servlet-class>mainpackage.servlets.AddBook</servlet-class>
+    <servlet-class>mainpackage.servlets.AddBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>book</servlet-name>
+    <servlet-class>mainpackage.servlets.BookServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>home</servlet-name>
@@ -20,6 +24,10 @@
   <servlet-mapping>
     <servlet-name>books</servlet-name>
     <url-pattern>/books</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>book</servlet-name>
+    <url-pattern>/books/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>addbook</servlet-name>

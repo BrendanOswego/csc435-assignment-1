@@ -1,6 +1,7 @@
 package mainpackage.data;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IBooks {
   public boolean addBook(Book b);
@@ -9,5 +10,5 @@ public interface IBooks {
 
   public List<Book> searchForBooks(String[] info);
 
-  public List<Book> getBooks();
+  public Map<Integer, Book> getBooks();
 }

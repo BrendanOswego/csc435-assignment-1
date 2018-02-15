@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mainpackage.data.API;
 import mainpackage.data.Book;
-import mainpackage.data.BooksList;
 import mainpackage.helpers.PrintHelper;
 
-public class AddBook extends HttpServlet {
+public class AddBookServlet extends HttpServlet {
   private static final long serialVersionUID = 3510403208860237748L;
 
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -32,29 +32,21 @@ public class AddBook extends HttpServlet {
     res.setContentType("text/html");
     PrintWriter out = res.getWriter();
     PrintHelper.instance().printTop(req, res);
-    String title = req.getParameterValues("title")[0];
-    String author = req.getParameterValues("author")[0];
-    if (title.trim().isEmpty() || author.trim().isEmpty()) {
+    String title, author;
+    try {
+      title = req.getParameterValues("title")[0];
+      author = req.getParameterValues("author")[0];
+    } catch (NullPointerException e) {
       out.println("<p>Title/Author cannot be empty</p>");
       return;
     }
-    HttpSession session = req.getSession();
-    BooksList booksList;
-    if (session.getAttribute("booksList") == null) {
-      booksList = new BooksList();
-    } else {
-      booksList = (BooksList) session.getAttribute("booksList");
-    }
-    if (!booksList.containsBook(title, author)) {
-      if (booksList.addBook(new Book(title, author))) {
-        out.println(
-            "<p>book added successfully to see all books please go to <a href='/assignment-1/books'>the book page</a></p>");
-        req.getSession().setAttribute("booksList", booksList);
-      }
-    } else {
+    HttpSession state = req.getSession();
+    boolean created = API.instance().postBook(state, new Book(title, author));
+    if (created)
       out.println(
-          "<p>Book is already added in the session try <a href='/assignment-1/books/add'>adding a new book</a></p>");
-    }
+          "<p>Book add successfully, click <a href='/assignment-1/books'>here</a> to go back to books page</p>");
+    else
+      out.println("<p>Something went wrong when trying to add book</p>");
     PrintHelper.instance().printBottom(out);
     out.close();
   }
