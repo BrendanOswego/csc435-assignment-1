@@ -1,5 +1,6 @@
 package mainpackage.helpers;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,9 @@ public class PrintHelper {
     out.println("</nav>");
   }
 
-  public void printTop(PrintWriter out, String cssPath) {
+  public void printTop(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    String cssPath = req.getContextPath() + "/css/styles.css";
+    PrintWriter out = res.getWriter();
     out.println("<html>");
     out.println("<head>");
     out.println("<meta charset='UTF-8'>");

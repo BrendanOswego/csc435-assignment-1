@@ -2,7 +2,6 @@ package mainpackage.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +18,7 @@ public class AddBook extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
     res.setContentType("text/html");
     PrintWriter out = res.getWriter();
-    String cssPath = req.getContextPath() + "/css/styles.css";
-    PrintHelper.instance().printTop(out, cssPath);
+    PrintHelper.instance().printTop(req, res);
     out.println("<form method='POST'>");
     out.println("<input type='text' name='title' placeholder='Title'/>");
     out.println("<input type='text' name='author' placeholder='Author'/>");
@@ -33,8 +31,7 @@ public class AddBook extends HttpServlet {
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
     res.setContentType("text/html");
     PrintWriter out = res.getWriter();
-    String cssPath = req.getContextPath() + "/css/styles.css";
-    PrintHelper.instance().printTop(out, cssPath);
+    PrintHelper.instance().printTop(req, res);
     String title = req.getParameterValues("title")[0];
     String author = req.getParameterValues("author")[0];
     if (title.trim().isEmpty() || author.trim().isEmpty()) {

@@ -20,8 +20,7 @@ public class Books extends HttpServlet {
     res.setContentType("text/html");
     PrintWriter out = res.getWriter();
     HttpSession session = req.getSession();
-    String cssPath = req.getContextPath() + "/css/styles.css";
-    PrintHelper.instance().printTop(out, cssPath);
+    PrintHelper.instance().printTop(req, res);
     out.println("<p>Add Books <a href='/assignment-1/books/add'>here</a>");
     if (session.getAttribute("booksList") != null) {
       BooksList booksList = (BooksList) session.getAttribute("booksList");
